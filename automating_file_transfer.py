@@ -29,13 +29,14 @@ def download_files(user, password, remote_dir, local_dir, destination):
     It goes through the files on the FTP server, and downloads them to the local directory.
     Finally, it moves the files from the local directory to an internal network destination.
     '''
+
     try:
         ftp = FTP(host)
         ftp.login(user=user, passwd=password)
         logging.info(f'The connection is established.')
         if os.path.exists(local_dir) is not True:
-            directory = "Files"
-            parent_dir = "/Users/Alexandra/Desktop/"
+            directory = 'Files'
+            parent_dir = '/Users/Alexandra/Desktop/'
             path = os.path.join(parent_dir, directory)
             os.mkdir(path)
         ftp.cwd(remote_dir)
@@ -47,14 +48,14 @@ def download_files(user, password, remote_dir, local_dir, destination):
                                open(os.path.join(local_dir, file_name), 'wb').write)
         ftp.close()
     except Exception as e:
-        logging.error(f"Error connecting to FTP host: {e}")
+        logging.error(f'Error connecting to FTP host: {e}')
 
 
     try:
         shutil.move(local_dir, destination)
         logging.info(f'{file_name} moved to {destination}')
     except Exception as e:
-        logging.error(f"Error moving file: {e}")
+        logging.error(f'Error moving file: {e}')
 
 if __name__=='__main__':
     host = 'ftp.otenet.gr'
@@ -70,7 +71,7 @@ if __name__=='__main__':
                                  remote_dir=remote_dir,
                                  local_dir=local_dir,
                                  destination=destination)
-    logging.info("Script scheduled to run every 20 sec")
+    logging.info('Script scheduled to run every 20 sec')
     while True:
          schedule.run_pending()
          time.sleep(1)
