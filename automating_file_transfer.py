@@ -49,8 +49,8 @@ def download_files(user, password, remote_dir, local_dir, destination):
 
         # Check if the local directory exists, if not create it
         if os.path.exists(local_dir) is not True:
-            directory = 'Files'
-            parent_dir = '/Users/Alexandra/Desktop/'
+            directory = input('Please, enter the name of the new folder:\n')
+            parent_dir = input('Enter the path where you want to create the folder:\n')
             path = os.path.join(parent_dir, directory)
             os.mkdir(path)
 
